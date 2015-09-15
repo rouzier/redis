@@ -818,7 +818,7 @@ void handleClientsBlockedOnLists(void) {
                         client *receiver = clientnode->value;
                         robj *dstkey = receiver->bpop.target;
                         int where = (receiver->lastcmd &&
-                                     receiver->lastcmd->proc == blpopCommand) ?
+                                     (receiver->lastcmd->proc == blpopCommand || receiver->lastcmd->proc == pblpopCommand)) ?
                                     LIST_HEAD : LIST_TAIL;
                         robj *value = listTypePop(o,where);
 
@@ -921,6 +921,10 @@ void blockingPopGenericCommand(client *c, int where, int unit) {
 
 void blpopCommand(client *c) {
     blockingPopGenericCommand(c,LIST_HEAD,UNIT_SECONDS);
+}
+
+void pblpopCommand(client *c) {
+    blockingPopGenericCommand(c,LIST_HEAD,UNIT_MILLISECONDS);
 }
 
 void brpopCommand(client *c) {

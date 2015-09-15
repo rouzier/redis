@@ -150,6 +150,7 @@ struct redisCommand redisCommandTable[] = {
     {"brpop",brpopCommand,-3,"ws",0,NULL,1,1,1,0,0},
     {"brpoplpush",brpoplpushCommand,4,"wms",0,NULL,1,2,1,0,0},
     {"blpop",blpopCommand,-3,"ws",0,NULL,1,-2,1,0,0},
+    {"pblpop",pblpopCommand,-3,"ws",0,NULL,1,-2,1,0,0},
     {"llen",llenCommand,2,"rF",0,NULL,1,1,1,0,0},
     {"lindex",lindexCommand,3,"r",0,NULL,1,1,1,0,0},
     {"lset",lsetCommand,4,"wm",0,NULL,1,1,1,0,0},

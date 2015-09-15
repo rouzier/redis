@@ -1528,6 +1528,7 @@ void multiCommand(client *c);
 void execCommand(client *c);
 void discardCommand(client *c);
 void blpopCommand(client *c);
+void pblpopCommand(client *c);
 void brpopCommand(client *c);
 void brpoplpushCommand(client *c);
 void appendCommand(client *c);
