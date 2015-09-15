@@ -1530,6 +1530,7 @@ void discardCommand(client *c);
 void blpopCommand(client *c);
 void pblpopCommand(client *c);
 void brpopCommand(client *c);
+void pbrpopCommand(client *c);
 void brpoplpushCommand(client *c);
 void appendCommand(client *c);
 void strlenCommand(client *c);

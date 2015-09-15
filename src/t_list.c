@@ -931,6 +931,10 @@ void brpopCommand(client *c) {
     blockingPopGenericCommand(c,LIST_TAIL,UNIT_SECONDS);
 }
 
+void pbrpopCommand(client *c) {
+    blockingPopGenericCommand(c,LIST_TAIL,UNIT_MILLISECONDS);
+}
+
 void brpoplpushCommand(client *c) {
     mstime_t timeout;
 
