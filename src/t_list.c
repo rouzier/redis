@@ -935,10 +935,10 @@ void pbrpopCommand(client *c) {
     blockingPopGenericCommand(c,LIST_TAIL,UNIT_MILLISECONDS);
 }
 
-void brpoplpushCommand(client *c) {
+void blockingPopPushGenericCommand(client *c, int unit) {
     mstime_t timeout;
 
-    if (getTimeoutFromObjectOrReply(c,c->argv[3],&timeout,UNIT_SECONDS)
+    if (getTimeoutFromObjectOrReply(c,c->argv[3],&timeout,unit)
         != C_OK) return;
 
     robj *key = lookupKeyWrite(c->db, c->argv[1]);
@@ -962,4 +962,8 @@ void brpoplpushCommand(client *c) {
             rpoplpushCommand(c);
         }
     }
+}
+
+void brpoplpushCommand(client *c) {
+    blockingPopPushGenericCommand(c, UNIT_SECONDS);
 }
