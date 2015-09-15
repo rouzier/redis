@@ -1532,6 +1532,7 @@ void pblpopCommand(client *c);
 void brpopCommand(client *c);
 void pbrpopCommand(client *c);
 void brpoplpushCommand(client *c);
+void pbrpoplpushCommand(client *c);
 void appendCommand(client *c);
 void strlenCommand(client *c);
 void zrankCommand(client *c);

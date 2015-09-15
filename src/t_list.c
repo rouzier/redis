@@ -967,3 +967,7 @@ void blockingPopPushGenericCommand(client *c, int unit) {
 void brpoplpushCommand(client *c) {
     blockingPopPushGenericCommand(c, UNIT_SECONDS);
 }
+
+void pbrpoplpushCommand(client *c) {
+    blockingPopPushGenericCommand(c, UNIT_MILLISECONDS);
+}
