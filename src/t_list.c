@@ -863,12 +863,12 @@ void handleClientsBlockedOnLists(void) {
 }
 
 /* Blocking RPOP/LPOP */
-void blockingPopGenericCommand(client *c, int where) {
+void blockingPopGenericCommand(client *c, int where, int unit) {
     robj *o;
     mstime_t timeout;
     int j;
 
-    if (getTimeoutFromObjectOrReply(c,c->argv[c->argc-1],&timeout,UNIT_SECONDS)
+    if (getTimeoutFromObjectOrReply(c,c->argv[c->argc-1],&timeout,unit)
         != C_OK) return;
 
     for (j = 1; j < c->argc-1; j++) {
@@ -920,11 +920,11 @@ void blockingPopGenericCommand(client *c, int where) {
 }
 
 void blpopCommand(client *c) {
-    blockingPopGenericCommand(c,LIST_HEAD);
+    blockingPopGenericCommand(c,LIST_HEAD,UNIT_SECONDS);
 }
 
 void brpopCommand(client *c) {
-    blockingPopGenericCommand(c,LIST_TAIL);
+    blockingPopGenericCommand(c,LIST_TAIL,UNIT_SECONDS);
 }
 
 void brpoplpushCommand(client *c) {
